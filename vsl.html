@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Conquista AI — Veja o Radar Anti-Cringe em ação</title>
+<meta name="robots" content="noindex">
+
+<!-- carregamento rápido do player -->
+<script>!function(i,n){i._plt=i._plt||(n&&n.timeOrigin?n.timeOrigin+n.now():Date.now())}(window,performance);</script>
+<link rel="preload" href="https://scripts.converteai.net/acc078c9-0e0f-4923-88cc-3973947486c2/players/6aceaae9bef6ac448cfb2d35/v4/player.js" as="script">
+<link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+<link rel="preload" href="https://cdn.converteai.net/acc078c9-0e0f-4923-88cc-3973947486c2/6aceaa5c21ff7b56c133710c/main.m3u8" as="fetch">
+<link rel="dns-prefetch" href="https://cdn.converteai.net">
+<link rel="dns-prefetch" href="https://scripts.converteai.net">
+<link rel="dns-prefetch" href="https://images.converteai.net">
+<link rel="dns-prefetch" href="https://license.vturb.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1074491671772497');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+
+<style>
+  :root{
+    --ink:#0B0B0D;
+    --red:#E12620;
+    --red-deep:#a3120c;
+    --smoke:#ADADB8;
+    --line:#232323;
+    --panel:#141414;
+    --card:#17171B;
+    --border:#414149;
+
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+    box-sizing:border-box;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+
+  html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;}
+
+  body{
+    background:var(--ink);
+    color:#fff;
+    font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+    font-size:16px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    min-height:100%;
+  }
+
+  .wrap{
+    width:100%;
+    max-width:432px;
+    margin:0 auto;
+    padding:18px 16px 40px;
+  }
+
+  /* ---------- marca ---------- */
+  .brand{
+    display:flex;align-items:center;gap:7px;
+    justify-content:center;
+    margin-bottom:26px;
+  }
+  .brand .flame{width:17px;height:17px;flex:0 0 17px;fill:var(--red);display:block;}
+  .brand span{
+    font-size:14px;font-weight:700;letter-spacing:.2px;color:#fff;
+  }
+  .brand span i{color:var(--red);font-style:normal;}
+
+  /* ---------- headline ---------- */
+  h1{
+    font-family:'Archivo Black',Archivo,sans-serif;
+    font-weight:400;
+    font-size:27px;
+    line-height:1.14;
+    letter-spacing:-.4px;
+    text-align:center;
+    margin-bottom:13px;
+  }
+  .sub{
+    font-size:15.5px;
+    line-height:1.46;
+    color:var(--smoke);
+    text-align:center;
+    margin-bottom:20px;
+  }
+
+  /* ---------- player ---------- */
+  .player{
+    width:100%;
+    margin:0 auto 14px;
+    border-radius:13px;
+    overflow:hidden;
+    background:#000;
+  }
+  vturb-smartplayer{display:block;width:100%;}
+
+  .sound{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:13px;color:#8d8d96;
+    margin-bottom:8px;
+  }
+  .sound svg{width:14px;height:14px;flex:0 0 14px;fill:#8d8d96;display:block;}
+
+  /* ---------- oferta (escondida até o pitch) ---------- */
+  .offer{
+    display:none;
+    margin-top:30px;
+    padding:24px 20px 22px;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+  }
+  .offer.on{display:block;animation:surge .5s ease both;}
+
+  @keyframes surge{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:none;}
+  }
+
+  .offer h2{
+    font-family:'Archivo Black',Archivo,sans-serif;
+    font-weight:400;
+    font-size:21px;
+    line-height:1.2;
+    letter-spacing:-.3px;
+    text-align:center;
+    margin-bottom:16px;
+  }
+
+  .offer ul{list-style:none;margin-bottom:20px;}
+  .offer li{
+    display:flex;gap:10px;align-items:flex-start;
+    font-size:14.5px;line-height:1.45;color:#d6d6dd;
+    padding:7px 0;
+  }
+  .offer li svg{
+    width:16px;height:16px;flex:0 0 16px;margin-top:2px;
+    fill:none;stroke:var(--red);stroke-width:2.4;
+    stroke-linecap:round;stroke-linejoin:round;
+  }
+
+  .price{
+    text-align:center;
+    margin-bottom:16px;
+    padding:14px 0;
+    border-top:1px solid #26262c;
+    border-bottom:1px solid #26262c;
+  }
+  .price b{
+    display:block;
+    font-family:'Archivo Black',Archivo,sans-serif;
+    font-weight:400;
+    font-size:30px;
+    line-height:1.05;
+    letter-spacing:-.6px;
+  }
+  .price small{
+    display:block;
+    font-size:13px;color:var(--smoke);margin-top:5px;
+  }
+
+  .buy{
+    display:block;width:100%;
+    padding:17px 18px;
+    background:var(--red);
+    color:#fff;
+    font-family:'Archivo',sans-serif;
+    font-size:17px;font-weight:700;letter-spacing:.1px;
+    text-align:center;text-decoration:none;
+    border:0;border-radius:11px;
+    cursor:pointer;
+    box-shadow:0 5px 18px rgba(225,38,32,.26);
+    transition:background .16s ease,transform .12s ease;
+  }
+  .buy:hover{background:#f03029;}
+  .buy:active{transform:translateY(1px);}
+  .buy:focus-visible{outline:3px solid #fff;outline-offset:3px;}
+
+  .reassure{
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    font-size:12.5px;color:#8d8d96;
+    margin-top:13px;text-align:center;
+  }
+  .reassure svg{width:14px;height:14px;flex:0 0 14px;fill:#8d8d96;display:block;}
+
+  /* ---------- barra fixa ---------- */
+  .bar{
+    position:fixed;left:0;right:0;bottom:0;
+    display:none;
+    padding:11px 14px;
+    padding-bottom:calc(11px + env(safe-area-inset-bottom,0px));
+    background:rgba(11,11,13,.93);
+    backdrop-filter:blur(9px);
+    -webkit-backdrop-filter:blur(9px);
+    border-top:1px solid #1e1e24;
+    z-index:40;
+  }
+  .bar.on{display:block;animation:surge .4s ease both;}
+  .bar a{
+    display:block;max-width:400px;margin:0 auto;
+    padding:14px 16px;
+    background:var(--red);color:#fff;
+    font-size:15.5px;font-weight:700;
+    text-align:center;text-decoration:none;
+    border-radius:10px;
+  }
+  .bar a:focus-visible{outline:3px solid #fff;outline-offset:2px;}
+  body.bar-on{padding-bottom:88px;}
+
+  @media (prefers-reduced-motion: reduce){
+    .offer.on,.bar.on{animation:none;}
+    .buy{transition:none;}
+  }
+
+  @media (min-width:600px){
+    .wrap{padding-top:34px;}
+    h1{font-size:31px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="brand">
+    <svg class="flame" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 1.5s.8 3.2-1.2 5.4c-1.9 2.1-4.4 3.3-4.4 6.6 0 1.3.5 2.4 1.2 3.2-.3-1.6.2-3.1 1.4-4.2-.4 2.3.6 3.6 1.9 4.6 1.2.9 1.9 1.9 1.9 3.3 0 .6-.1 1.1-.4 1.6 2.8-.9 4.8-3.5 4.8-6.6 0-2.5-1.1-4-2.2-5.3-.9 1-1.9 1.3-1.9 1.3s1.3-2.6.4-5.3c-.5-1.7-1.5-3-1.5-4.6Z"/></svg>
+    <span>Conquista <i>AI</i></span>
+  </div>
+
+  <h1>Veja o Radar Anti-Cringe lendo uma conversa do começo ao fim</h1>
+
+  <p class="sub">É o mesmo olhar que vai analisar os seus prints. Assista até o fim para entender como ele funciona na prática.</p>
+
+  <div class="player">
+    <vturb-smartplayer id="vid-6aceaae9bef6ac448cfb2d35" style="display:block;margin:0 auto;width:100%;">
+      <div class="vturb-player-placeholder" style="position:relative;width:100%;padding:177.77777777777777% 0 0;z-index:0;background-color:black;"></div>
+    </vturb-smartplayer>
+  </div>
+
+  <p class="sound">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4Zm-2.5-9v2.1a7 7 0 0 1 0 13.8V21a9 9 0 0 0 0-18Z"/></svg>
+    Assista com o som ligado
+  </p>
+
+  <section class="offer" id="offer" aria-live="polite">
+    <h2>Comece a usar o Conquista AI hoje</h2>
+
+    <ul>
+      <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Mande o print da conversa e receba respostas calibradas para o contexto</li>
+      <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Funciona com Story, DM, WhatsApp e apps de encontro</li>
+      <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Acesso imediato, direto do navegador do celular</li>
+      <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Sem fidelidade — cancele quando quiser</li>
+    </ul>
+
+    <div class="price">
+      <b>R$ 37,90</b>
+      <small>por mês, menos de R$ 1,30 por dia</small>
+    </div>
+
+    <a class="buy" id="buyBtn" href="https://pay.cakto.com.br/qxswdis_863799">Começar agora</a>
+
+    <p class="reassure">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 4 5v6.2c0 4.9 3.4 9.4 8 10.9 4.6-1.5 8-6 8-10.9V5l-8-3.2Zm-1 14.4-3.5-3.5 1.4-1.4L11 13.4l5.1-5.1 1.4 1.4-6.5 6.5Z"/></svg>
+      7 dias de garantia. Não gostou, devolvemos.
+    </p>
+  </section>
+
+</div>
+
+<div class="bar" id="bar">
+  <a id="barBtn" href="https://pay.cakto.com.br/qxswdis_863799">Começar por R$ 37,90</a>
+</div>
+
+<!-- player VTurb -->
+<script type="text/javascript">
+  var s=document.createElement("script");
+  s.src="https://scripts.converteai.net/acc078c9-0e0f-4923-88cc-3973947486c2/players/6aceaae9bef6ac448cfb2d35/v4/player.js";
+  s.async=!0;
+  document.head.appendChild(s);
+</script>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== ajuste aqui ===== */
+  var SEGUNDOS_CTA = 540;              /* 09:00 do vídeo */
+  var LEMBRAR      = true;             /* quem já chegou no pitch volta e vê o botão */
+  /* ======================= */
+
+  var CHAVE   = 'cai_vsl_pitch_' + SEGUNDOS_CTA;
+  var offer   = document.getElementById('offer');
+  var bar     = document.getElementById('bar');
+  var liberado = false;
+
+  function track(evento, dados){
+    dados = dados || {};
+    try{ if (window.fbq) fbq('trackCustom', evento, dados); }catch(e){}
+    try{ if (window.dataLayer) dataLayer.push(Object.assign({event:evento}, dados)); }catch(e){}
+    try{ if (window.gtag) gtag('event', evento, dados); }catch(e){}
+    (window.vslEventos = window.vslEventos || []).push({evento:evento, dados:dados});
+  }
+
+  function liberar(origem){
+    if (liberado) return;
+    liberado = true;
+    offer.classList.add('on');
+    bar.classList.add('on');
+    document.body.classList.add('bar-on');
+    if (LEMBRAR){ try{ localStorage.setItem(CHAVE,'1'); }catch(e){} }
+    track('vsl_pitch_liberado', {origem: origem});
+  }
+
+  /* quem já tinha chegado no pitch antes */
+  if (LEMBRAR){
+    try{ if (localStorage.getItem(CHAVE) === '1') liberar('retorno'); }catch(e){}
+  }
+
+  /* ---- acompanha o tempo do vídeo no player da VTurb ---- */
+  var tentativas = 0;
+
+  function instancia(){
+    if (typeof smartplayer === 'undefined') return null;
+    if (!smartplayer.instances || !smartplayer.instances.length) return null;
+    return smartplayer.instances[0];
+  }
+
+  function checa(p){
+    if (liberado) return;
+    if (p.smartAutoPlay) return;              /* ignora a prévia muda do player */
+    var t = p.video && p.video.currentTime;
+    if (typeof t !== 'number' || t < SEGUNDOS_CTA) return;
+    liberar('video');
+  }
+
+  function acompanhar(){
+    var p = instancia();
+
+    if (!p){
+      if (tentativas >= 40) return;           /* ~40s de espera em conexão ruim */
+      tentativas++;
+      return setTimeout(acompanhar, 1000);
+    }
+
+    p.on('timeupdate', function(){ checa(p); });
+
+    /* rede de segurança: se o timeupdate falhar, a checagem por intervalo pega */
+    var relogio = setInterval(function(){
+      if (liberado) return clearInterval(relogio);
+      var atual = instancia();
+      if (atual) checa(atual);
+    }, 2000);
+  }
+
+  if (!liberado) acompanhar();
+
+  /* ---- cliques no checkout ---- */
+  ['buyBtn','barBtn'].forEach(function(id){
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', function(){
+      track('vsl_clique_checkout', {local: id === 'barBtn' ? 'barra' : 'card'});
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
