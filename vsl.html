@@ -139,40 +139,81 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
     font-size:21px;
     line-height:1.2;
     letter-spacing:-.3px;
-    text-align:center;
-    margin-bottom:16px;
+    text-align:left;
+    text-wrap:balance;
+    max-width:17ch;
+    margin-bottom:26px;
   }
 
-  .offer ul{list-style:none;margin-bottom:20px;}
+  /* rótulo de cada grupo */
+  .grp-lbl{
+    display:flex;align-items:center;gap:9px;
+    font-size:10.5px;font-weight:700;
+    letter-spacing:.14em;text-transform:uppercase;
+    color:var(--red);
+    margin-bottom:11px;
+  }
+  .grp-lbl::after{
+    content:"";flex:1;height:1px;background:#2e2e34;
+  }
+
+  .offer ul{list-style:none;}
   .offer li{
-    display:flex;gap:10px;align-items:flex-start;
-    font-size:14.5px;line-height:1.45;color:#d6d6dd;
+    display:flex;gap:11px;align-items:flex-start;
+    font-size:15.5px;line-height:1.45;color:#ededf2;font-weight:500;
     padding:7px 0;
   }
   .offer li svg{
-    width:16px;height:16px;flex:0 0 16px;margin-top:2px;
-    fill:none;stroke:var(--red);stroke-width:2.4;
+    width:17px;height:17px;flex:0 0 17px;margin-top:2px;
+    fill:none;stroke:var(--red);stroke-width:2.2;
     stroke-linecap:round;stroke-linejoin:round;
+  }
+
+  /* bônus: secundários, marcador único e contido */
+  .bonus{margin-top:26px;}
+  .bonus li{
+    font-size:14.5px;line-height:1.42;color:#b9b9c2;font-weight:400;
+    padding:5px 0;
+  }
+  .bonus li svg{
+    width:15px;height:15px;flex:0 0 15px;margin-top:3px;
+    stroke:#7c7c86;stroke-width:2;
+  }
+
+  /* ancoragem antes do preço */
+  .anchor{
+    margin-top:26px;
+    font-size:15px;line-height:1.5;color:#d6d6dd;text-align:left;
+  }
+  .anchor s{
+    color:#fff;font-weight:600;text-decoration:line-through;
+    text-decoration-color:var(--red);text-decoration-thickness:2px;
   }
 
   .price{
     text-align:center;
-    margin-bottom:16px;
-    padding:14px 0;
+    margin:30px 0 20px;
+    padding:22px 0 18px;
     border-top:1px solid #26262c;
     border-bottom:1px solid #26262c;
+  }
+  .price i{
+    display:block;font-style:normal;
+    font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    color:#8d8d96;margin-bottom:7px;
   }
   .price b{
     display:block;
     font-family:'Archivo Black',Archivo,sans-serif;
     font-weight:400;
-    font-size:30px;
-    line-height:1.05;
-    letter-spacing:-.6px;
+    font-size:44px;
+    line-height:1;
+    letter-spacing:-1.2px;
+    color:#fff;
   }
   .price small{
     display:block;
-    font-size:13px;color:var(--smoke);margin-top:5px;
+    font-size:13px;color:var(--smoke);margin-top:8px;
   }
 
   .buy{
@@ -192,12 +233,24 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
   .buy:active{transform:translateY(1px);}
   .buy:focus-visible{outline:3px solid #fff;outline-offset:3px;}
 
-  .reassure{
-    display:flex;align-items:center;justify-content:center;gap:7px;
-    font-size:12.5px;color:#8d8d96;
-    margin-top:13px;text-align:center;
+  .guarantee{
+    display:flex;align-items:flex-start;gap:12px;
+    margin-top:18px;padding:15px 15px 16px;
+    background:#101014;
+    border:1px solid #2e2e34;
+    border-radius:12px;
   }
-  .reassure svg{width:14px;height:14px;flex:0 0 14px;fill:#8d8d96;display:block;}
+  .guarantee svg{
+    width:26px;height:26px;flex:0 0 26px;margin-top:1px;
+    fill:var(--red);display:block;
+  }
+  .guarantee b{
+    display:block;font-size:14.5px;font-weight:700;color:#fff;
+    line-height:1.3;margin-bottom:4px;
+  }
+  .guarantee p{
+    font-size:13px;line-height:1.45;color:#9a9aa4;
+  }
 
   /* ---------- barra fixa ---------- */
   .bar{
@@ -259,8 +312,9 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
   </p>
 
   <section class="offer" id="offer" aria-live="polite">
-    <h2>Comece a usar o Conquista AI hoje</h2>
+    <h2>Tudo que você leva ao entrar hoje</h2>
 
+    <p class="grp-lbl">Acesso ao app</p>
     <ul>
       <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Mande o print da conversa e receba respostas calibradas para o contexto</li>
       <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Funciona com Story, DM, WhatsApp e apps de encontro</li>
@@ -268,17 +322,33 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
       <li><svg viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5"/></svg>Sem fidelidade — cancele quando quiser</li>
     </ul>
 
+    <div class="bonus">
+      <p class="grp-lbl">Vai junto</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Mapa da Mente Feminina</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Como Conquistar uma Mulher nas Redes Sociais</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Reaqueça Qualquer Conversa</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> Grupo VIP do Conquista AI</li>
+      </ul>
+    </div>
+
+    <p class="anchor">Vendidos separados, esses materiais passam de <s>R$ 127</s> — e sem a IA.</p>
+
     <div class="price">
+      <i>Hoje você paga</i>
       <b>R$ 37,90</b>
       <small>por mês, menos de R$ 1,30 por dia</small>
     </div>
 
     <a class="buy" id="buyBtn" href="https://pay.cakto.com.br/qxswdis_863799">Começar agora</a>
 
-    <p class="reassure">
+    <div class="guarantee">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.8 4 5v6.2c0 4.9 3.4 9.4 8 10.9 4.6-1.5 8-6 8-10.9V5l-8-3.2Zm-1 14.4-3.5-3.5 1.4-1.4L11 13.4l5.1-5.1 1.4 1.4-6.5 6.5Z"/></svg>
-      7 dias de garantia. Não gostou, devolvemos.
-    </p>
+      <div>
+        <b>7 dias de garantia incondicional</b>
+        <p>Entra, usa tudo e decide depois. Se não for pra você, devolvemos o valor inteiro — sem perguntas.</p>
+      </div>
+    </div>
   </section>
 
 </div>
