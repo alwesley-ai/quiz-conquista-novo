@@ -29,6 +29,17 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1074491671772497');
 fbq('track','PageView');
+/* contagem por pessoa: cada evento dispara uma vez por visita */
+window.cqOnce = function(evento, dados){
+  try{
+    var k = 'cq_ev_' + evento;
+    if (sessionStorage.getItem(k)) return false;
+    sessionStorage.setItem(k, '1');
+  }catch(e){}
+  try{ if (window.fbq) fbq('trackCustom', evento, dados || {}); }catch(e){}
+  return true;
+};
+cqOnce('vsl_00_pagina_abriu');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></noscript>
@@ -423,6 +434,11 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
 
   function track(evento, dados){
     dados = dados || {};
+    try{
+      var k = 'cq_ev_' + evento;
+      if (sessionStorage.getItem(k)) return;
+      sessionStorage.setItem(k, '1');
+    }catch(e){}
     try{ if (window.fbq) fbq('trackCustom', evento, dados); }catch(e){}
     try{ if (window.dataLayer) dataLayer.push(Object.assign({event:evento}, dados)); }catch(e){}
     try{ if (window.gtag) gtag('event', evento, dados); }catch(e){}
@@ -436,7 +452,8 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
     bar.classList.add('on');
     document.body.classList.add('bar-on');
     if (LEMBRAR){ try{ localStorage.setItem(CHAVE,'1'); }catch(e){} }
-    track('vsl_pitch_liberado', {origem: origem});
+    /* só conta como pitch quem chegou aos 9:00 assistindo; quem volta conta separado */
+    track(origem === 'retorno' ? 'vsl_pitch_retorno' : 'vsl_pitch_liberado', {origem: origem});
   }
 
   /* quem já tinha chegado no pitch antes */
