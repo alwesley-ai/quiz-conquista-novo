@@ -1643,8 +1643,58 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
      Dispara nos pixels que existirem na página. Sem pixel, só registra
      na fila window.quizEvents, pronta para ser lida depois. */
   window.quizEvents = window.quizEvents || [];
+
+  /* ---------- origem do visitante ----------
+     Le os UTM da URL na primeira visita e guarda pela sessao, para que
+     todas as telas seguintes carreguem a mesma origem. Sem UTM, deduz
+     pelo fbclid (clique de anuncio) ou marca como direto. */
+  var ORIGEM = (function(){
+    var CHAVE = 'cq_origem';
+    var CAMPOS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+    var p;
+    try{ p = new URLSearchParams(window.location.search); }catch(e){ p = null; }
+
+    var achou = {};
+    if (p) CAMPOS.forEach(function(c){
+      var v = p.get(c);
+      if (v) achou[c] = String(v).slice(0, 80);
+    });
+
+    if (!Object.keys(achou).length){
+      /* sem UTM: tenta recuperar o que ja foi guardado nesta sessao */
+      try{
+        var salvo = sessionStorage.getItem(CHAVE);
+        if (salvo) return JSON.parse(salvo);
+      }catch(e){}
+      achou.utm_source = (p && p.get('fbclid')) ? 'pago' : 'direto';
+      achou.utm_medium = (p && p.get('fbclid')) ? 'fbclid' : 'nenhum';
+    }
+    achou.origem = achou.utm_source;
+    try{ sessionStorage.setItem(CHAVE, JSON.stringify(achou)); }catch(e){}
+    return achou;
+  })();
+
+  /* devolve os UTM como string de consulta, para repassar adiante */
+  function origemNaURL(){
+    var partes = [];
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(c){
+      if (ORIGEM[c]) partes.push(c + '=' + encodeURIComponent(ORIGEM[c]));
+    });
+    return partes.join('&');
+  }
+
+  /* junta a origem a um link, respeitando ? ou & que ja existam */
+  function comOrigem(url){
+    var q = origemNaURL();
+    if (!q) return url;
+    var corte = url.indexOf('#');
+    var hash = corte >= 0 ? url.slice(corte) : '';
+    var base = corte >= 0 ? url.slice(0, corte) : url;
+    return base + (base.indexOf('?') >= 0 ? '&' : '?') + q + hash;
+  }
+
   function track(evento, dados){
-    dados = dados || {};
+    dados = Object.assign({}, ORIGEM, dados || {});
     try{
       var k = 'cq_ev_' + evento;
       if (sessionStorage.getItem(k)) return;
@@ -2022,7 +2072,7 @@ src="https://www.facebook.com/tr?id=1074491671772497&ev=PageView&noscript=1"></n
     b.addEventListener('click', function(){
       track('quiz_clique_ver_video');
       if (!b.dataset.vsl) return;
-      window.location.href = b.dataset.vsl;
+      window.location.href = comOrigem(b.dataset.vsl);
     });
   })();
 
